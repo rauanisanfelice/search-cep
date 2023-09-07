@@ -135,3 +135,5 @@ docker-compose.yaml
 docker-compose.dev.yaml
 
 swagger_output.json
+
+docs/

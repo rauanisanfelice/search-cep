@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Projeto de busca de CEPs",
   "scripts": {
-    "start": "nodemon src/server.js",
+    "start": "npm run swagger-autogen && npm run start-server",
+    "start-server": "nodemon src/server.js",
     "swagger-autogen": "node src/middlewares/swagger.mjs",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . --ext .js,.mjs",
