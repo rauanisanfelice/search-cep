@@ -1,0 +1,45 @@
+version: "3"
+services:
+
+  nodeapp:
+    container_name: nodeapp
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file: .env
+    environment:
+      WATCHPACK_POLLING: "true"
+      NODE_ENV: "development"
+    ports:
+      - "3000:3000"
+    links:
+      - mongodb
+    depends_on:
+      - mongodb
+    networks:
+      - mongodb
+
+  mongodb:
+    container_name: mongodb
+    image: mongo:7.0
+    volumes:
+      - mongodb:/data/db
+      - mongodb_config:/data/configdb
+    ports:
+      - "27017:27017"
+    env_file: .env
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: teste
+      MONGO_INITDB_ROOT_PASSWORD: teste
+      MONGO_INITDB_DATABASE: teste
+    networks:
+      - mongodb
+
+networks:
+  mongodb:
+    driver: bridge
+
+volumes:
+  mongodb:
+  mongodb_config:
