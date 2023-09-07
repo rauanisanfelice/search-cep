@@ -28,7 +28,7 @@ class UsuarioController {
   async get_one(req, res) {
     /*
     #swagger.tags = ['User']
-    #swagger.summary = 'Busca usuário pelo port ID.'
+    #swagger.summary = 'Busca usuário pelo ID.'
     #swagger.description = 'Obtenha informações detalhadas sobre um usuário pelo ID.'
     #swagger.parameters['id'] = { description: 'O ID único do usuário.' }
     #swagger.responses[200] = {

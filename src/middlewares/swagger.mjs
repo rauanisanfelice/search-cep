@@ -65,6 +65,14 @@ const doc = {
       uptime: '1420.0',
       message: 'OK',
       timestamp: '2023-01-01T00:00:00.000Z'
+    },
+    CEP: {
+      cep: "12345678",
+      state: "SP",
+      city: "São José do Rio Preto",
+      neighborhood: "Bairro Teste",
+      street: "Rua Teste",
+      service: "correios"
     }
   }
 }
