@@ -8,6 +8,12 @@ format:
 lint:
 	@npm run lint
 
+swagger:
+  @npm run swagger-autogen
+
+api:
+  @npm run start
+
 packages: node-modules-destroy
 	@printf "Destruindo node modules... "
 	@npm install
