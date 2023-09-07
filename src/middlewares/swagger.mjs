@@ -25,14 +25,39 @@ const doc = {
   },
   tags: [
     {
-      name: 'User',
+      nome: 'User',
       description: 'Realiza busca de usuários',
     },
     {
-      name: 'CEP',
+      nome: 'CEP',
       description: 'Realiza busca de CEP',
     },
   ],
+  definitions: {
+    User: {
+      nome: "João da Silva",
+      email: "joao@example.com"
+
+    },
+    ListUser: [
+      {
+        nome: "João da Silva",
+        email: "joao@example.com"
+      },
+      {
+        nome: "Maria Nunes",
+        email: "maria@example.com"
+      }
+    ],
+    AddUser: {
+      $nome: "João da Silva",
+      $email: "joao@example.com",
+      $senha: "fake-senha",
+    },
+    UpdateUser: {
+      $nome: "João da Silva",
+    }
+  }
 }
 
 swaggerAutogen(options)(outputFile, endpointsFiles, doc).then(async () => {
