@@ -9,10 +9,10 @@ lint:
 	@npm run lint
 
 swagger:
-  @npm run swagger-autogen
+	@npm run swagger-autogen
 
 api:
-  @npm run start
+	@npm run start
 
 packages: node-modules-destroy
 	@printf "Destruindo node modules... "
