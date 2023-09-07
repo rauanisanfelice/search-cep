@@ -25,12 +25,16 @@ const doc = {
   },
   tags: [
     {
-      nome: 'User',
-      description: 'Realiza busca de usuários',
+      name: 'User',
+      description: 'Realiza busca de usuários.',
     },
     {
-      nome: 'CEP',
-      description: 'Realiza busca de CEP',
+      name: 'CEP',
+      description: 'Realiza busca de CEP.',
+    },
+    {
+      name: 'Health',
+      description: 'Verifica saúde da aplicação.',
     },
   ],
   definitions: {
@@ -56,6 +60,11 @@ const doc = {
     },
     UpdateUser: {
       $nome: "João da Silva",
+    },
+    HealthCheck: {
+      uptime: '1420.0',
+      message: 'OK',
+      timestamp: '2023-01-01T00:00:00.000Z'
     }
   }
 }
