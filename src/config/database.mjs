@@ -5,7 +5,7 @@ import 'dotenv/config'
 
 const MongoDBService = async () => {
   try {
-    const connectionString = `mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_DATABASE}?retryWrites=true&w=majority`
+    const connectionString = `mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}`;
 
     const options = {
       useNewUrlParser: true,
