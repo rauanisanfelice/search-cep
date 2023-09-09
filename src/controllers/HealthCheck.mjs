@@ -12,17 +12,18 @@ class HealthCheck {
       description: 'Servidor indisponível.',
     }
     */
-    const dataHoraAtual = new Date();
     const healthcheck = {
       uptime: process.uptime(),
       message: 'OK',
-      timestamp: dataHoraAtual.toISOString()
+      timestamp: ''
     };
     try {
+      const dataHoraAtual = new Date();
+      healthcheck.timestamp = dataHoraAtual.toISOString();
       res.status(200).send(healthcheck);
     } catch (error) {
       healthcheck.message = error;
-      res.status(503).send();
+      res.status(503).send(healthcheck);
     }
   }
 }

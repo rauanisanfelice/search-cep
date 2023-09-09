@@ -22,9 +22,9 @@ class EnderecoController {
       description: 'Erro no servidor.',
     }
     */
-   try {
+    try {
 
-     let cep_clean = cleanCEP(req.params.cep.replace(/\D/g, ''));
+      let cep_clean = cleanCEP(req.params.cep.replace(/\D/g, ''));
       await Endereco.getEndereco(cep_clean);
 
       if (Endereco.notFound) {
@@ -41,9 +41,9 @@ class EnderecoController {
         });
       }
 
-      return res.json(Endereco.endereco);
+      return res.status(200).json(Endereco.endereco);
     } catch (error) {
-      return res.status(500).json({ error });
+      return res.status(500).json({ "error": error.message });
     } finally {
       Endereco.initial();
     }

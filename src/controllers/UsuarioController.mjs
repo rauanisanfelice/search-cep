@@ -19,9 +19,9 @@ class UsuarioController {
 
     try {
       const usuarios = await Usuario.find();
-      res.json(usuarios);
+      res.status(200).json(usuarios);
     } catch (error) {
-      res.status(500).json({ error })
+      res.status(500).json({ 'error': error.message })
     }
   }
 
@@ -46,12 +46,12 @@ class UsuarioController {
       const usuario = await Usuario.findById(req.params.id);
 
       if (isEmpty(usuario)) {
-        return res.status(404).json({ error: 'Usuário não localizado.' });
+        return res.status(404).json({ 'error': 'Usuário não localizado.' });
       }
 
-      return res.json(usuario);
+      return res.status(200).json(usuario);
     } catch (error) {
-      return res.status(500).json({ error });
+      return res.status(500).json({ 'error': error.message });
     }
   }
 
@@ -67,7 +67,7 @@ class UsuarioController {
       schema: { $ref: "#/definitions/AddUser" },
     }
     #swagger.responses[201] = {
-      description: 'Usuário localizado com sucesso.',
+      description: 'Usuário criado com sucesso.',
     }
     #swagger.responses[400] = {
       description: 'Campos informados estão incorretos.',
@@ -94,7 +94,7 @@ class UsuarioController {
       if (!(await schema.isValid(req.body))) {
         return res
           .status(400)
-          .json({ error: 'Campos informados estão incorretos.' });
+          .json({ 'error': 'Campos informados estão incorretos.' });
       }
 
       const usuarioExistente = await Usuario.findOne({ email: req.body.email });
@@ -102,7 +102,7 @@ class UsuarioController {
       if (usuarioExistente) {
         return res
           .status(409)
-          .json({ error: 'O objeto já está cadastrado.' });
+          .json({ 'error': 'O objeto já está cadastrado.' });
       }
 
       const { _id, nome, email } = await Usuario.create(req.body);
@@ -115,7 +115,7 @@ class UsuarioController {
         },
       });
     } catch (error) {
-      return res.status(500).json({ error });
+      return res.status(500).json({ 'error': error.message });
     }
   }
 
@@ -157,10 +157,9 @@ class UsuarioController {
 
       const nome = req.body['nome'];
       const usuario = await Usuario.findById(req.params.id);
-      console.info(usuario.email);
 
       if (isEmpty(usuario)) {
-        return res.status(404).json({ error: 'Usuário não cadastrado' });
+        return res.status(404).json({ 'error': 'Usuário não cadastrado' });
       }
 
       const options = { upsert: true };
@@ -176,7 +175,7 @@ class UsuarioController {
 
       return res.status(204).json();
     } catch (error) {
-      return res.status(500).json({ error });
+      return res.status(500).json({ 'error': error.message });
     }
   }
 
@@ -200,12 +199,12 @@ class UsuarioController {
       const usuario = await Usuario.findByIdAndDelete(req.params.id);
 
       if (isEmpty(usuario)) {
-        return res.status(404).json({ error: 'Usuário não cadastrado' });
+        return res.status(404).json({ 'error': 'Usuário não cadastrado' });
       }
 
       return res.status(204).json();
     } catch (error) {
-      return res.status(500).json({ error });
+      return res.status(500).json({ 'error': error.message });
     }
   }
 }
