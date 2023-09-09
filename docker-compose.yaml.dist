@@ -1,0 +1,58 @@
+version: "3"
+services:
+
+  nodeapp:
+    container_name: nodeapp
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file: .env
+    environment:
+      WATCHPACK_POLLING: "true"
+      NODE_ENV: "development"
+    ports:
+      - "3000:3000"
+    links:
+      - mongodb
+    depends_on:
+      - mongodb
+    networks:
+      - mongodb
+
+  mongodb:
+    container_name: mongodb
+    image: mongo:7.0
+    restart: on-failure
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: pass
+    volumes:
+      - mongodb-data:/data/db
+      - mongodb-log:/var/log/mongodb
+    networks:
+      - mongodb
+
+  mongo-express:
+    image: mongo-express
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${DB_USERNAME}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${DB_PASSWORD}
+      ME_CONFIG_MONGODB_URL: mongodb://admin:pass@mongodb:27017/
+    networks:
+      - mongodb
+    depends_on:
+      - mongodb
+
+networks:
+  mongodb:
+    driver: bridge
+
+volumes:
+  mongodb-data:
+  mongodb-log:
+  mongodb-config:
