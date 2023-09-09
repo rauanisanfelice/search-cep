@@ -4,7 +4,7 @@
 
 Bem-vindo à documentação da API de Busca de CEP. Esta API permite que você gerencie informações de usuários e busque CEPs.
 
-> Base URL: https:/.example.com
+> Base URL: https:/localhost:3000
 
 ### Endpoints
 
@@ -205,3 +205,18 @@ make coverage
 Realizei uma pesquisa breve e pude encontrar um ponto interessante:
 
 > Outra vantagem é o desempenho. Node.js utiliza a arquitetura de loop de eventos não bloqueantes, o que o torna altamente eficiente para manipular muitas conexões simultâneas, tornando-o uma excelente escolha para aplicativos de alto tráfego e tempo real, como chats, jogos online e streaming de dados. Java, por outro lado, exige mais recursos para lidar com tarefas concorrentes, tornando-o menos eficiente em algumas situações.
+
+## Explicando protocolo HTTP entre servidor e cliente
+
+Quando um navegador digita uma URL de um site determinando site o browser realiza uma serie de etapas para atender esta solicitação segue um passo a passo explicando isto melhor:
+
+1. O Browser realiza a validação se este DNS ou ip que foi digitado existe;
+2. Caso positivo, realiza uma coneção com o servidor responsável pelo DNS e realiza uma requisição HTTP;
+3. O servidor realiza o processamento desta requisição, nesta etapa pode houver:
+    1. chamadas em outros serviços, servidores e aplicações;
+    2. carregamento de arquivos estáticos;
+    3. processar scripts.
+4. Envido do retorno do processamento para o cliente;
+5. Broweser recebe as informações e rendereiza para o usuário final;
+
+Lembrando que em todas estas etapas pode ocorrer erros, como latência, falta de energia, interrupções de conexão, percas de pacotes, erros no servidor...
